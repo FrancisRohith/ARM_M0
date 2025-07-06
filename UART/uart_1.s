@@ -53,36 +53,36 @@ Reset_Handler   PROC
  ;wait until transmit buffer is not full
                  
 AGAIN			LDR R1, =0x51000004                     
-				LDR	R0, [R1]
-				MOVS	R1, #0x2
-				ANDS	R0, R0, R1
-				CMP	R0,	#0x00
-				BNE		AGAIN	
+			LDR	R0, [R1]
+			MOVS	R1, #0x2
+			ANDS	R0, R0, R1
+			CMP	R0,	#0x00
+			BNE		AGAIN	
 ;Transmit data
-    			LDR R1,=0x51000000
-				MOVS R0, #0x55
-				STR R0,[R1]
+    			LDR 	R1,=0x51000000
+			MOVS 	R0, #0x55
+			STR 	R0,[R1]
 
 
 ;wait until receive buffer is not empty
 
 WAIT			LDR 	R1, =0x51000004
-				LDR	R0, [R1]
-				MOVS	R1, #01
-				ANDS 	R0, R0, R1
-				CMP		R0,	#0x00
-				BNE		WAIT		
+			LDR	R0, [R1]
+			MOVS	R1, #01
+			ANDS 	R0, R0, R1
+			CMP	R0,	#0x00
+			BNE	WAIT		
 
 ;read the data received from UART 
 
-				LDR 	R1, =0x51000000
-				LDR 	R2, [R1]
+			LDR 	R1, =0x51000000
+			LDR 	R2, [R1]
 
-				B		AGAIN
+			B	AGAIN
 
-				ENDP
+			ENDP
 
-				ALIGN 		4					 ; Align to a word boundary
+			ALIGN 		4					 ; Align to a word boundary
 
 		END                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
    
